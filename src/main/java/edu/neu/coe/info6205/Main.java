@@ -4,6 +4,7 @@ package edu.neu.coe.info6205;
 import edu.neu.coe.info6205.christofides.ChristofidesAlgorithm;
 import edu.neu.coe.info6205.model.Vertex;
 import edu.neu.coe.info6205.strategic.SimulatedAnnealingOptimization;
+import edu.neu.coe.info6205.tactical.RandomSwappingOptimization;
 import edu.neu.coe.info6205.tactical.TwoOptOptimization;
 import edu.neu.coe.info6205.util.Benchmark;
 import edu.neu.coe.info6205.util.CSVReader;
@@ -28,6 +29,14 @@ public class Main {
         System.out.println("\n Hamiltonian Path: " + ChristofidesTour.getTour(tsp));
         System.out.println(" Christofides cost: " + ChristofidesTour.getTourCost(tsp) + " meters");
 
+        // Random Swapping Optimization
+        benchmark.startMark();
+        List<Vertex> rsoTsp = RandomSwappingOptimization.optimize(tsp.stream().collect(Collectors.toList()));
+        benchmark.endMark();
+        System.out.print("\n RandomSwappingOptimization Time: " + benchmark.resultTime() + "ms");
+        System.out.println("\n Random Swapping Optimization Path: " + ChristofidesTour.getTour(rsoTsp));
+        System.out.println(" Random Swapping Cost: " + ChristofidesTour.getTourCost(rsoTsp) + " meters");
+
         //Two-Opt Optimization
         benchmark.startMark();
         List<Vertex> twoOptTsp = TwoOptOptimization.twoOpt(tsp.stream().collect(Collectors.toList()));
@@ -35,8 +44,6 @@ public class Main {
         System.out.print("\n TwoOpt Time: " + benchmark.resultTime() + "ms");
         System.out.println("\n TwoOpt Path: " + ChristofidesTour.getTour(twoOptTsp));
         System.out.println(" TwoOpt Optimization Cost: " + ChristofidesTour.getTourCost(twoOptTsp) + " meters");
-
-
 
         //Simulated Annealing Optimization
         benchmark.startMark();
