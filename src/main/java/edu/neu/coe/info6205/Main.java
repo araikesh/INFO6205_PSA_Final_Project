@@ -2,7 +2,9 @@ package edu.neu.coe.info6205;
 
 
 import edu.neu.coe.info6205.christofides.ChristofidesAlgorithm;
+import edu.neu.coe.info6205.model.Edge;
 import edu.neu.coe.info6205.model.Vertex;
+import edu.neu.coe.info6205.strategic.AntColonyOptimization;
 import edu.neu.coe.info6205.strategic.SimulatedAnnealingOptimization;
 import edu.neu.coe.info6205.tactical.RandomSwappingOptimization;
 import edu.neu.coe.info6205.tactical.TwoOptOptimization;
@@ -10,6 +12,7 @@ import edu.neu.coe.info6205.util.Benchmark;
 import edu.neu.coe.info6205.util.CSVReader;
 import edu.neu.coe.info6205.util.ChristofidesTour;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,5 +57,26 @@ public class Main {
         System.out.print("\n Simulated Annealing Optimization Time: " + benchmark.resultTime() + "ms");
         System.out.println("\n Simulated Annealing Optimization Path: " + ChristofidesTour.getTour(saTsp));
         System.out.println(" Simulated Annealing Optimization Cost: " + ChristofidesTour.getTourCost(saTsp) + " meters");
+
+        //Ant Colony Optimization
+        List<Integer> tour = tsp.stream().map(vertex -> vertex.getNumericId()).collect(Collectors.toList());
+        benchmark.startMark();
+        List<Integer> aopIdTsp = AntColonyOptimization.optimizeWithAntColony(tour,tsp);
+        benchmark.endMark();
+
+        List<Vertex> aopTsp = new ArrayList<>();
+        double aopCost = 0;
+        for (int i = 0; i < aopIdTsp.size() - 1; i++) {
+            Vertex v1 = tsp.get(aopIdTsp.get(i));
+            Vertex v2 = tsp.get(aopIdTsp.get(i+1));
+            Edge edge = new Edge(v1, v2);
+            aopCost += edge.getWeight();
+            aopTsp.add(v1);
+        }
+        aopTsp.add(tsp.get(aopIdTsp.get(aopIdTsp.size() - 1)));
+
+        System.out.print("\n AntColonyOptimization Time: " + benchmark.resultTime() + "ms");
+        System.out.println("\n Ant Colony Optimization Path: " + ChristofidesTour.getTour(aopTsp));
+        System.out.println(" AntColonyOptimization Cost: " + aopCost + " meters");
     }
 }
