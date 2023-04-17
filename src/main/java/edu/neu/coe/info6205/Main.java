@@ -1,6 +1,5 @@
 package edu.neu.coe.info6205;
 
-
 import edu.neu.coe.info6205.christofides.ChristofidesAlgorithm;
 import edu.neu.coe.info6205.model.Edge;
 import edu.neu.coe.info6205.model.Vertex;

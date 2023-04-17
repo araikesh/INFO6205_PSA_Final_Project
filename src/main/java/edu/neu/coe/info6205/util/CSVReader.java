@@ -14,8 +14,7 @@ public class CSVReader {
 
         List<Vertex> vertices = new ArrayList<>();
 
-        try (
-                com.opencsv.CSVReader reader = new com.opencsv.CSVReader(new InputStreamReader(
+        try (com.opencsv.CSVReader reader = new com.opencsv.CSVReader(new InputStreamReader(
                         com.opencsv.CSVReader.class.getClassLoader().getResourceAsStream("info6205.spring2023.teamproject.csv")))) {
             String[] header = reader.readNext();
             System.out.println(String.join(", ", header));

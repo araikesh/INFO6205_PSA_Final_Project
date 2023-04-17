@@ -6,7 +6,6 @@ import edu.neu.coe.info6205.model.Vertex;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Random;
 
 public class PrimsMST {
 

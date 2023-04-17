@@ -148,18 +148,4 @@ public class ChristofidesAlgorithm {
         return result;
     }
 
-/*    public static List<Edge> generateEdges(List<Vertex> vertices) {
-        List<Edge> edges = new ArrayList<>();
-        int numVertices = vertices.size();
-        for (int i = 0; i < numVertices - 1; i++) {
-            Vertex v1 = vertices.get(i);
-            for (int j = i + 1; j < numVertices; j++) {
-                Vertex v2 = vertices.get(j);
-                Edge edge = new Edge(v1, v2);
-                edges.add(edge);
-            }
-        }
-        return edges;
-    }*/
-
 }
