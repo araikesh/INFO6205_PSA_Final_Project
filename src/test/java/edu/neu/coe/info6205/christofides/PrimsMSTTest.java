@@ -12,6 +12,7 @@ public class PrimsMSTTest {
 
 @Test
 public void testEmptyVertices() {
+
 List<Vertex> vertices = Arrays.asList();
 List<Edge> minimumSpanningTree = PrimsMST.findMinimumSpanningTree(vertices);
 assertEquals(0, minimumSpanningTree.size());
