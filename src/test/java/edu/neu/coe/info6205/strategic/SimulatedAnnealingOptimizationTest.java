@@ -108,4 +108,3 @@ double acceptanceProbability = sao.acceptanceProbability(currentEnergy, neighbor
 assertEquals(expectedProbability, acceptanceProbability, 0.0001);
 }
 }
- 
