@@ -128,7 +128,7 @@ public class ChristofidesAlgorithm {
             graph.get(e.getV1()).add(e);
             graph.get(e.getV2()).add(e);
         }
-        Vertex start = vertices.get(283);
+        Vertex start = vertices.get(0);
         Deque<Vertex> stack = new ArrayDeque<>();
         stack.push(start);
         while (!stack.isEmpty()) {
